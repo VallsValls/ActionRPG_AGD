@@ -1,0 +1,17 @@
+Row 0: Facing Down
+Row 1: Facing Right
+Row 2: Facing Left
+Row 3: Facing Up
+
+(Bottom 4 rows are the same as the top four, just with a thick line)
+
+
+Goblin Frames:
+Frame 0: Idle (1/1)
+Frame 1: Walk (1/2)
+Frame 2: Walk (2/2)
+Frame 3: Hurt (1/1)
+Frame 4: Stunned (1/1) / Row 3 has Dead Frame
+Frame 5: Attack (1/3)
+Frame 6: Attack (2/3)
+Frame 7: Attack (3/3)
