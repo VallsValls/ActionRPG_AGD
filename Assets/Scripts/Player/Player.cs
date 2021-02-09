@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 
     //Movement
-    public float moveVel = 5.0f;
+    public float moveSpeed = 5.0f;
     private float moveModifier = 1.0f;
 
     private Vector2 movement = new Vector2();
@@ -29,24 +29,24 @@ public class Player : MonoBehaviour
     void Update()
     {
         //Get Inputs
-        movement.x = Input.GetAxisRaw("Hor");
-        movement.y = Input.GetAxisRaw("Ver");
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
         //Send movement Info to Animator
-        animator.SetFloat("Hor", movement.x);
-        animator.SetFloat("Ver", movement.y);
-        float Vel = movement.magnitude; //Slightly faster: movement.sqrMagnitude
-        animator.SetFloat("Vel", Vel);
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        float speed = movement.magnitude; //Slightly faster: movement.sqrMagnitude
+        animator.SetFloat("Speed", speed);
 
 
         //Face the Mouse
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 toMouse = mouseWorldPos - body.position;
 
-        if (Vel < 0.01)
+        if (speed < 0.01)
         {
-            animator.SetFloat("Hor", toMouse.x);
-            animator.SetFloat("Ver", toMouse.y);
+            animator.SetFloat("Horizontal", toMouse.x);
+            animator.SetFloat("Vertical", toMouse.y);
         }
 
     } //end Update()
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
             if (movement.magnitude > 1)
                 movement.Normalize();
 
-            Move(movement * moveVel * moveModifier);
+            Move(movement * moveSpeed * moveModifier);
 
         }
     } //end FixedUpdate()
@@ -67,9 +67,9 @@ public class Player : MonoBehaviour
     private void Move(Vector2 move)
     {
         body.velocity += new Vector2(move.x * 0.2f, move.y * 0.2f);
-        if (body.velocity.magnitude > moveVel)
+        if (body.velocity.magnitude > moveSpeed)
         {
-            body.velocity = body.velocity.normalized * moveVel;
+            body.velocity = body.velocity.normalized * moveSpeed;
         }
 
         //Uses Drag
